@@ -1,0 +1,91 @@
+# Introduction
+
+WPMoo is a modern WordPress development framework under the wpmoo-org organization. It provides fluent builders (Moo::page(), Moo::field(), etc.) with PicoCSS-first design, strong security, and full testability.
+
+## Overview
+
+WPMoo is designed as a **Micro Object-Oriented Framework** for WordPress that helps developers create options pages, metaboxes, custom post types, and more with elegant, fluent APIs. The framework emphasizes clean architecture, domain isolation, and testability.
+
+### Primary Goals
+
+- **Fluent Builders**: Create WordPress components using elegant fluent APIs
+- **PicoCSS-First Design**: Built-in responsive styling with PicoCSS semantics
+- **Strong Security**: Built-in escaping, sanitization, and protection against common vulnerabilities
+- **Full Testability**: Domain logic is testable without WordPress dependencies
+- **Modern Architecture**: Clear separation of concerns with domain isolation
+
+## Architecture
+
+WPMoo follows a modular architecture with complete domain isolation:
+
+- **Field Domain**: Input fields, toggles, textareas, and other form elements
+- **Layout Domain**: Tabs, accordions, fieldsets for organizing interface elements
+- **Page Domain**: Options pages with sidebar navigation
+- **Metabox Domain**: Post editing metaboxes
+
+Each domain is a self-contained vertical slice that can function independently. Cross-domain communication happens only through contracts (interfaces), ensuring clean separation of concerns.
+
+### Dual-Purpose Design
+
+WPMoo can function both as:
+
+1. **Standalone Plugin**: When installed directly, it provides a complete framework
+2. **Framework Library**: When used as a dependency in other plugins via Composer
+
+This dual-purpose design allows maximum flexibility for different integration scenarios.
+
+## Key Features
+
+### Fluent API
+
+Create WordPress components with intuitive fluent syntax:
+
+```php
+use WPMoo\Moo;
+use WPMoo\Fields\Field;
+
+Moo::page( 'settings', 'Site Settings' )
+    ->addField( Field::input( 'site_title' )
+        ->label( 'Site Title' ) )
+    ->addField( Field::toggle( 'enable_comments' )
+        ->label( 'Enable Comments' ) );
+```
+
+### PicoCSS Integration
+
+Leverage PicoCSS semantic markup for responsive designs:
+
+- `<main class="container">` for main content areas
+- `<section>` for grouping related elements  
+- `<div class="grid">` for responsive field layouts
+
+### Domain Isolation
+
+Each domain (Field, Layout, Page, Metabox) maintains complete independence:
+
+- No domain depends on another domain's concrete classes
+- Cross-domain communication only through interfaces
+- Each domain follows layered responsibility pattern:
+  - Contracts → interfaces only
+  - Abstracts → shared base behavior
+  - Builders → fluent API
+  - Types/Component → concrete implementations
+  - WordPress → hook wiring, rendering, enqueueing
+
+## Getting Started
+
+The framework provides multiple entry points depending on your needs:
+
+- Use `Moo` facade for options pages and metaboxes
+- Use `Field` class for form elements
+- Use `Layout` namespace for layout components
+- Extend base classes for custom implementations
+
+## Security
+
+WPMoo enforces security best practices:
+
+- Automatic output escaping through escaping helpers
+- Input sanitization through field-specific sanitizers
+- No direct superglobal access ($_GET, $_POST)
+- Protected against common WordPress vulnerabilities
