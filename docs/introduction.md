@@ -38,26 +38,73 @@ This dual-purpose design allows maximum flexibility for different integration sc
 
 ### Fluent API
 
-Create WordPress components with intuitive fluent syntax:
+Create WordPress components with intuitive fluent syntax in two ways:
 
+#### Page Configuration
 ```php
 use WPMoo\Moo;
 use WPMoo\Fields\Field;
 
-// Pages can contain layout components directly
+// Define a complete page with all configuration options
 Moo::page( 'settings', 'Site Settings' )
-    ->tab('general_settings')          // Layout components directly under page
-    ->accordion('advanced_settings')   // More layout components
-    ->addField( Field::input( 'site_title' )
-        ->label( 'Site Title' ) )
-    ->addField( Field::toggle( 'enable_comments' )
-        ->label( 'Enable Comments' ) );
+    ->capability( 'manage_options' )
+    ->title( __('Site Settings', 'wpmoo') )
+    ->description( __('Manage site-wide settings', 'wpmoo') )
+    ->menu_slug( 'wpmoo-settings' )
+    ->menu_position( 20 )
+    ->menu_icon( 'dashicons-admin-settings' );
 ```
 
-Layout components can be nested and used at multiple levels:
-- Directly under page: `Moo::page()->tab()`, `Moo::page()->accordion()`, etc.
-- Within other layout components
-- Fields can be placed at any level in the hierarchy
+#### Layout Components (Separate Definition)
+```php
+// Define layout components separately, linked via parent
+Moo::tabs('main_tabs')
+    ->parent('settings')  // Links as child to parent page
+    ->vertical()          // Optional: defaults to horizontal
+    ->items([
+        [
+            'id' => 'general',
+            'title' => 'General Settings',
+            'content' => [
+                Field::input('site_title')->label('Site Title')
+            ]
+        ]
+    ]);
+```
+
+#### Layout Components (Direct in Page)
+```php
+// Or define layout components directly within page
+Moo::page('settings', 'Site Settings')
+    ->capability('manage_options')
+    ->tabs('main_tabs')              // Layout components directly under page
+        ->items([                    // Common items structure for all layout components with sub-elements
+            [
+                'id' => 'general',
+                'title' => 'General Settings',
+                'content' => [        // Content array for fields within this tab
+                    Field::input('site_title')->label('Site Title'),
+                    Field::text('admin_email')->label('Admin Email')
+                ]
+            ],
+            [
+                'id' => 'advanced',
+                'title' => 'Advanced Settings',
+                'content' => [
+                    Field::toggle('enable_cache')->label('Enable Caching')
+                ]
+            ]
+        ]);
+```
+
+All layout components with sub-elements (tabs, accordion, fieldset, etc.) use the common items() structure:
+- id: Unique identifier for the sub-element
+- title: Display title for the sub-element
+- content: Array of fields or other components within the sub-element
+
+Layout components can be used in two ways:
+- As separate definitions linked with parent() relationship
+- Directly within pages using fluent interface
 
 ### PicoCSS Integration
 
