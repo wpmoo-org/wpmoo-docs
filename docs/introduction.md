@@ -44,12 +44,20 @@ Create WordPress components with intuitive fluent syntax:
 use WPMoo\Moo;
 use WPMoo\Fields\Field;
 
+// Pages can contain layout components directly
 Moo::page( 'settings', 'Site Settings' )
+    ->tab('general_settings')          // Layout components directly under page
+    ->accordion('advanced_settings')   // More layout components
     ->addField( Field::input( 'site_title' )
         ->label( 'Site Title' ) )
     ->addField( Field::toggle( 'enable_comments' )
         ->label( 'Enable Comments' ) );
 ```
+
+Layout components can be nested and used at multiple levels:
+- Directly under page: `Moo::page()->tab()`, `Moo::page()->accordion()`, etc.
+- Within other layout components
+- Fields can be placed at any level in the hierarchy
 
 ### PicoCSS Integration
 
