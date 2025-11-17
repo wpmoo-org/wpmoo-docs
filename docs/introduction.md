@@ -111,9 +111,11 @@ Layout components can be used in two ways:
 Leverage PicoCSS semantic markup for responsive designs:
 
 - `<main class="container">` for main content areas
-- `<section>` for grouping related elements  
+- `<section>` for grouping related elements
 - `<div class="grid">` for responsive field layouts
+- All layout components (tabs, accordions, etc.) follow PicoCSS patterns for consistency
 
+All layout components generate PicoCSS-compatible markup to ensure consistency and accessibility.
 ### Domain Isolation
 
 Each domain (Field, Layout, Page, Metabox) maintains complete independence:
