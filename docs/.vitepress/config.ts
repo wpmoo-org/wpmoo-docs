@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  base: '/wpmoo-docs/',  // Base path for GitHub Pages deployment
+  base: '/',  // Base path for custom domain (root path)
   title: 'WPMoo Framework',
   description: 'Documentation for the WPMoo Micro Object Oriented Framework for WordPress',
 
