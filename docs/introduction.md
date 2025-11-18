@@ -116,6 +116,11 @@ Leverage PicoCSS semantic markup for responsive designs:
 - All layout components (tabs, accordions, etc.) follow PicoCSS patterns for consistency
 
 All layout components generate PicoCSS-compatible markup to ensure consistency and accessibility.
+
+## Architecture
+
+WPMoo follows a micro-object-oriented approach with clear separation between domain logic and WordPress integration:
+
 ### Domain Isolation
 
 Each domain (Field, Layout, Page, Metabox) maintains complete independence:
@@ -127,7 +132,19 @@ Each domain (Field, Layout, Page, Metabox) maintains complete independence:
   - Abstracts → shared base behavior
   - Builders → fluent API
   - Types/Component → concrete implementations
-  - WordPress → hook wiring, rendering, enqueueing
+  - (No WordPress integration - kept separate for decoupling)
+
+### WordPress Integration
+
+All WordPress integration is centralized in a dedicated `WordPress/` directory:
+
+- Bootstrap: Main entry point and plugin initialization
+- Managers: Handle registration of domain components with WordPress
+- Renderers: Handle rendering of components in WordPress context
+- AssetEnqueuers: Handle loading of assets in WordPress context
+- Handlers: Handle processing tasks in WordPress context
+
+This architecture ensures domain logic remains testable without WordPress dependencies while providing a centralized location for all WordPress integration.
 
 ## Getting Started
 
