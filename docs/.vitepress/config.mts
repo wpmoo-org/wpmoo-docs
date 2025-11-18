@@ -1,28 +1,27 @@
 import { defineConfig } from 'vitepress'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "WPMoo Framework",
-  description: "Micro Object Orientiated Framework for WordPress",
+  base: '/',  // Base path for custom domain (root path)
+  title: 'WPMoo Framework',
+  description: 'Documentation for the WPMoo Micro Object Oriented Framework for WordPress',
+
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Introduction', link: '/introduction' },
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Getting Started',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Introduction', link: '/introduction' }
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/wpmoo-org/wpmoo' }
     ]
   }
 })
