@@ -15,7 +15,8 @@ export default defineConfig({
       {
         text: 'Getting Started',
         items: [
-          { text: 'Introduction', link: '/introduction' }
+          { text: 'Introduction', link: '/introduction' },
+          { text: 'CLI Tool', link: '/cli' }
         ]
       }
     ],
