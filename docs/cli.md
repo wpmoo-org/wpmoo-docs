@@ -1,17 +1,10 @@
 # Command Line Interface (CLI)
 
-The WPMoo CLI is a powerful command-line tool that helps you manage your WPMoo-based projects. It provides a range of utilities for building, checking, deploying, and maintaining your WordPress plugins built with the WPMoo framework.
+The WPMoo CLI is a powerful command-line tool that helps you develop, build, check, and deploy your WordPress plugins built with the WPMoo framework. It provides a range of utilities for maintaining your WPMoo-based plugins.
 
-## Context-Aware Execution
+## Getting Started
 
-The CLI automatically detects where you're running it from and adjusts its behavior accordingly:
-
-- **In wpmoo-cli directory**: Shows information about the CLI itself; commands relevant to CLI development are available (info, version, check). The version command will update the CLI's own composer.json version during development.
-- **In wpmoo framework directory**: Provides framework management capabilities (all commands except rename)
-- **In WPMoo-based plugin**: Offers full plugin-specific tools and operations
-- **In other projects**: Basic commands only, with helpful guidance
-
-This ensures you always have the right tools available for your current project context.
+To use the CLI with your WPMoo-based plugin, make sure you're in your plugin's directory when running commands. The CLI will automatically detect your plugin and provide the appropriate tools.
 
 ## Available Commands
 
@@ -171,7 +164,6 @@ The Rename command helps you rename your plugin project. It:
 
 This is incredibly useful when starting a new project based on the WPMoo starter plugin.
 
-> **Note:** The rename command is only available when running in a WPMoo-based plugin project. It is not available when running in the WPMoo framework itself or the CLI directory, to prevent accidental modification of the framework.
 
 **Usage:**
 ```bash
@@ -208,10 +200,10 @@ moo wp-check -- --ignore-codes=trademarked_term,plugin_repo
 
 ## Getting Help
 
-To see all available commands and options for the current context, simply run:
+To see all available commands and options for your plugin project, simply run:
 
 ```bash
 moo
 ```
 
-This will show you only the commands that are relevant in your current directory, making the CLI intuitive and context-appropriate for any project.
+The CLI will show you only the commands that are relevant in your current project directory.
