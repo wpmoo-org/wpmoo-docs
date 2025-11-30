@@ -155,6 +155,32 @@ The framework provides multiple entry points depending on your needs:
 - Use `Layout` namespace for layout components
 - Extend base classes for custom implementations
 
+## Multi-Plugin Support
+
+WPMoo supports multiple plugins using the same framework simultaneously without conflicts. This makes it ideal for creating "WPMoo-based plugins" that can coexist peacefully.
+
+### Automatic Plugin Isolation
+
+When components (pages, fields, layouts) are created using the Moo facade, the framework automatically detects which plugin is making the call and isolates the components accordingly:
+
+```php
+// In any WPMoo-based plugin
+use WPMoo\Moo;
+
+Moo::page('settings', 'My Plugin Settings')
+    ->capability('manage_options')
+    ->menu_slug('my-plugin-settings');
+```
+
+Each plugin's components are stored separately in the framework registry, ensuring no conflicts even when multiple plugins use the same component IDs.
+
+### Benefits for Plugin Developers
+
+1. **No Conflicts**: Multiple WPMoo-based plugins can use the same component IDs without conflicts
+2. **Easy Integration**: Just use the standard Moo API; isolation happens automatically
+3. **Scalability**: The system supports any number of plugins using the framework
+4. **Complete Isolation**: Each plugin's components are completely separated from others
+
 ## Security
 
 WPMoo enforces security best practices:
