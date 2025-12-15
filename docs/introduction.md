@@ -43,7 +43,6 @@ Create WordPress components with intuitive fluent syntax in two ways:
 #### Page Configuration
 ```php
 use WPMoo\Moo;
-use WPMoo\Fields\Field;
 
 // Define a complete page with all configuration options
 Moo::page( 'settings', 'Site Settings' )
@@ -55,26 +54,30 @@ Moo::page( 'settings', 'Site Settings' )
     ->menu_icon( 'dashicons-admin-settings' );
 ```
 
-#### Layout Components (Separate Definition)
+#### Layout Components (Individual Definition)
 ```php
-// Define layout components separately, linked via parent
-Moo::tabs('main_tabs')
-    ->parent('settings')  // Links as child to parent page
-    ->vertical()          // Optional: defaults to horizontal
-    ->items([
-        [
-            'id' => 'general',
-            'title' => 'General Settings',
-            'content' => [
-                Field::input('site_title')->label('Site Title')
-            ]
-        ]
+// Define layout components individually with direct parent linking
+Moo::page( 'settings', 'Site Settings' )
+    ->capability( 'manage_options' )
+    ->menu_slug( 'wpmoo-settings' );
+
+// Create individual tabs linked to the parent page
+Moo::tab('general', 'General Settings')
+    ->parent('settings')             // Links as child to parent page
+    ->fields([
+        Moo::input('site_title')->label('Site Title')
+    ]);
+
+Moo::tab('advanced', 'Advanced Settings')
+    ->parent('settings')             // Links as child to parent page
+    ->fields([
+        Moo::toggle('enable_cache')->label('Enable Caching')
     ]);
 ```
 
-#### Layout Components (Direct in Page)
+#### Layout Components (Direct in Page with items structure - Legacy)
 ```php
-// Or define layout components directly within page
+// For backward compatibility, you can still use the items structure
 Moo::page('settings', 'Site Settings')
     ->capability('manage_options')
     ->tabs('main_tabs')              // Layout components directly under page
@@ -83,28 +86,29 @@ Moo::page('settings', 'Site Settings')
                 'id' => 'general',
                 'title' => 'General Settings',
                 'content' => [        // Content array for fields within this tab
-                    Field::input('site_title')->label('Site Title'),
-                    Field::text('admin_email')->label('Admin Email')
+                    Moo::input('site_title')->label('Site Title'),
+                    Moo::input('admin_email')->label('Admin Email')
                 ]
             ],
             [
                 'id' => 'advanced',
                 'title' => 'Advanced Settings',
                 'content' => [
-                    Field::toggle('enable_cache')->label('Enable Caching')
+                    Moo::toggle('enable_cache')->label('Enable Caching')
                 ]
             ]
         ]);
 ```
 
-All layout components with sub-elements (tabs, accordion, fieldset, etc.) use the common items() structure:
-- id: Unique identifier for the sub-element
-- title: Display title for the sub-element
-- content: Array of fields or other components within the sub-element
+The recommended approach is to define layout components individually with direct parent linking. This provides:
+- Cleaner, more readable code
+- Easier maintenance and debugging
+- Better IDE support and autocomplete
+- More intuitive understanding of relationships
 
 Layout components can be used in two ways:
-- As separate definitions linked with parent() relationship
-- Directly within pages using fluent interface
+- As individual definitions linked with parent() relationship (recommended)
+- Using the legacy items() structure for backward compatibility
 
 ### PicoCSS Integration
 
