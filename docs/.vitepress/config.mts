@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   base: '/',
   title: 'WPMoo',
-  description: 'Public website for WPMoo Odoo development workflow tooling',
+  description: 'Public website for WPMoo Tool and Odoo development workflows',
 
   themeConfig: {
     nav: [
