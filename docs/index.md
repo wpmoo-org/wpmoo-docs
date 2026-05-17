@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: "WPMoo Toolkit"
-  text: "Create. Work. Recover."
-  tagline: Free MIT-licensed tooling for creating, operating, and recovering local Odoo development environments.
+  text: "Workflow Platform · Micro Object Oriented"
+  tagline: Development, staging and production workflows for Odoo projects.
   image:
     src: /assets/wpmoo-logo.webp
     alt: WPMoo Toolkit logo
@@ -20,12 +20,18 @@ hero:
       link: https://github.com/wpmoo-org/wpmoo-toolkit
 
 features:
-  - title: Local-first
+  - title: Local-first Odoo lifecycle
     details: Start with a repeatable local Odoo environment before deciding how much infrastructure you need.
+  - title: Development, staging, production
+    details: Keep one workflow language for generated environments, daily operation, and safer recovery paths.
   - title: Source code stays separate
     details: Product repositories live as Git submodules under a predictable Odoo source layout.
-  - title: Daily work has a cockpit
+  - title: Daily cockpit
     details: Services, modules, databases, diagnostics, repositories, and recovery live in one terminal menu.
+  - title: Safe recovery tools
+    details: Status, doctor, snapshot, restore, and safe reset workflows help local experiments stay recoverable.
+  - title: Free and MIT licensed
+    details: WPMoo Toolkit is free software for Odoo teams and is independent from Odoo S.A.
 ---
 
 <div class="home-visual">

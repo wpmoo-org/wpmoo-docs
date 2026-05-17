@@ -150,6 +150,26 @@
   font-size: 0.92rem;
 }
 
+.VPHero .text {
+  font-size: clamp(21px, 2.25vw, 29px);
+  line-height: 1.18;
+  color: transparent;
+  background: -webkit-linear-gradient(120deg, #4aa8e0 15%, #b48ac7 52%, #df78ad);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.VPHero .tagline {
+  max-width: 560px;
+  color: #6f8ea5;
+  font-size: clamp(14px, 1.5vw, 16px);
+  line-height: 1.55;
+}
+
+.dark .VPHero .tagline {
+  color: #9bb8cb;
+}
+
 .vp-code-group .tabs label {
   display: inline-flex;
   align-items: center;
