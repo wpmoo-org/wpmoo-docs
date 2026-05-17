@@ -25,11 +25,33 @@ Run these from a workspace or generated environment:
 
 Many operator commands support `--json` for automation:
 
-```bash
-npx @wpmoo/toolkit status --json
-npx @wpmoo/toolkit doctor --json
-npx @wpmoo/toolkit source list --json
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit status --json
+$ npx @wpmoo/toolkit doctor --json
+$ npx @wpmoo/toolkit source list --json
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit status --json
+$ pnpm dlx @wpmoo/toolkit doctor --json
+$ pnpm dlx @wpmoo/toolkit source list --json
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit status --json
+$ yarn dlx @wpmoo/toolkit doctor --json
+$ yarn dlx @wpmoo/toolkit source list --json
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit status --json
+$ bunx @wpmoo/toolkit doctor --json
+$ bunx @wpmoo/toolkit source list --json
+```
+
+:::
 
 ## Daily `./moo` Commands
 
@@ -60,18 +82,68 @@ contexts.
 
 `source` commands inspect or sync the source manifest:
 
-```bash
-npx @wpmoo/toolkit source list
-npx @wpmoo/toolkit source list --json
-npx @wpmoo/toolkit source sync
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit source list
+$ npx @wpmoo/toolkit source list --json
+$ npx @wpmoo/toolkit source sync
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit source list
+$ pnpm dlx @wpmoo/toolkit source list --json
+$ pnpm dlx @wpmoo/toolkit source sync
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit source list
+$ yarn dlx @wpmoo/toolkit source list --json
+$ yarn dlx @wpmoo/toolkit source sync
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit source list
+$ bunx @wpmoo/toolkit source list --json
+$ bunx @wpmoo/toolkit source sync
+```
+
+:::
 
 `source add` and `source remove` are aliases for repository operations:
 
-```bash
-npx @wpmoo/toolkit source add \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit source add \
   --repo-url https://github.com/OCA/server-tools.git \
   --source-type oca
 
-npx @wpmoo/toolkit source remove --repo server-tools --source-type oca
+$ npx @wpmoo/toolkit source remove --repo server-tools --source-type oca
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit source add \
+  --repo-url https://github.com/OCA/server-tools.git \
+  --source-type oca
+
+$ pnpm dlx @wpmoo/toolkit source remove --repo server-tools --source-type oca
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit source add \
+  --repo-url https://github.com/OCA/server-tools.git \
+  --source-type oca
+
+$ yarn dlx @wpmoo/toolkit source remove --repo server-tools --source-type oca
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit source add \
+  --repo-url https://github.com/OCA/server-tools.git \
+  --source-type oca
+
+$ bunx @wpmoo/toolkit source remove --repo server-tools --source-type oca
+```
+
+:::

@@ -149,3 +149,46 @@
 .vp-doc .menu-tree {
   font-size: 0.92rem;
 }
+
+.vp-code-group .tabs label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vp-code-group .tabs label[data-title="npm"]::before,
+.vp-code-group .tabs label[data-title="pnpm"]::before,
+.vp-code-group .tabs label[data-title="yarn"]::before,
+.vp-code-group .tabs label[data-title="bun"]::before {
+  display: inline-grid;
+  width: 17px;
+  height: 17px;
+  place-items: center;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.vp-code-group .tabs label[data-title="npm"]::before {
+  content: "n";
+  background: #cb3837;
+}
+
+.vp-code-group .tabs label[data-title="pnpm"]::before {
+  content: "p";
+  color: #111827;
+  background: #f9ad00;
+}
+
+.vp-code-group .tabs label[data-title="yarn"]::before {
+  content: "y";
+  background: #2c8ebb;
+}
+
+.vp-code-group .tabs label[data-title="bun"]::before {
+  content: "b";
+  color: #2f1d13;
+  background: #f6d8b5;
+}

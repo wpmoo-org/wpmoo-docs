@@ -72,9 +72,9 @@ reset, and safer to operate.
 - Docker and Docker Compose
 - Optional: GitHub CLI (`gh`) for GitHub-connected setup
 
-```bash
-brew install gh
-gh auth login
+```sh
+$ brew install gh
+$ gh auth login
 ```
 
 GitHub CLI is optional. You can start local-only and add repositories later.
@@ -83,28 +83,65 @@ GitHub CLI is optional. You can start local-only and add repositories later.
 
 Run the wizard from the workspace where you keep Odoo projects:
 
-```bash
-npx @wpmoo/toolkit
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit
+```
+
+:::
 
 Short aliases:
 
-```bash
-npx wpmoo
-npx @wpmoo/odoo
+::: code-group
+
+```sh [npm]
+$ npx wpmoo
+$ npx @wpmoo/odoo
 ```
+
+```sh [pnpm]
+$ pnpm dlx wpmoo
+$ pnpm dlx @wpmoo/odoo
+```
+
+```sh [yarn]
+$ yarn dlx wpmoo
+$ yarn dlx @wpmoo/odoo
+```
+
+```sh [bun]
+$ bunx wpmoo
+$ bunx @wpmoo/odoo
+```
+
+:::
 
 After the environment is created:
 
-```bash
-cd <product>_dev
-./moo
+```sh
+$ cd <product>_dev
+$ ./moo
 ```
 
 For a scripted setup:
 
-```bash
-npx @wpmoo/toolkit create \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit create \
   --product odoo_sample_module \
   --odoo-version 19.0 \
   --dev-repo-url https://github.com/example-org/odoo_sample_module_dev.git \
@@ -112,40 +149,67 @@ npx @wpmoo/toolkit create \
   --init-empty-repos
 ```
 
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit create \
+  --product odoo_sample_module \
+  --odoo-version 19.0 \
+  --dev-repo-url https://github.com/example-org/odoo_sample_module_dev.git \
+  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
+  --init-empty-repos
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit create \
+  --product odoo_sample_module \
+  --odoo-version 19.0 \
+  --dev-repo-url https://github.com/example-org/odoo_sample_module_dev.git \
+  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
+  --init-empty-repos
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit create \
+  --product odoo_sample_module \
+  --odoo-version 19.0 \
+  --dev-repo-url https://github.com/example-org/odoo_sample_module_dev.git \
+  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
+  --init-empty-repos
+```
+
+:::
+
 ## Main Cockpit Menu
 
 ```text
 WPMoo Cockpit
-|-- Command palette /
-|   |-- search commands such as /test, /logs, /doctor, /safe-reset
 |-- Services
-|   |-- start
-|   |-- stop
-|   |-- restart
-|   |-- logs
-|   `-- shell
+|   |-- Start services
+|   |-- Stop services
+|   |-- Restart services
+|   |-- View logs
+|   `-- Open shell
 |-- Modules
-|   |-- install
-|   |-- update
-|   |-- test
-|   |-- lint
-|   |-- pot
-|   |-- add-module
-|   `-- remove-module
+|   |-- List modules
+|   |-- Install module
+|   |-- Update module
+|   |-- Run tests
+|   |-- Run environment lint
+|   |-- Generate POT
+|   |-- Add module
+|   `-- Remove module
 |-- Database
-|   |-- psql
-|   |-- snapshot
-|   |-- restore-snapshot
-|   `-- resetdb
+|   |-- Open psql
+|   |-- Create snapshot
+|   |-- Restore snapshot
+|   `-- Reset database
 |-- Diagnostics
-|   |-- status
-|   `-- doctor
+|   |-- Environment status
+|   `-- Run doctor
 |-- Repositories
-|   |-- add-repo
-|   `-- remove-repo
-|-- Maintenance
-|   `-- safe-reset
-`-- Exit
+|   |-- Add source repo
+|   `-- Remove source repo
+`-- Maintenance
+    `-- Safe reset environment
 ```
 
 ## Keep Reading

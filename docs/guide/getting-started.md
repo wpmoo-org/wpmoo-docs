@@ -10,26 +10,100 @@ repository. Product source code stays in source repositories under
 
 ## Install Nothing First
 
-You can run WPMoo directly through npm:
+You can add WPMoo Toolkit to a project with the package manager you already use:
 
-```bash
-npx @wpmoo/toolkit
+::: code-group
+
+```sh [npm]
+$ npm i @wpmoo/toolkit
 ```
+
+```sh [pnpm]
+$ pnpm add @wpmoo/toolkit
+```
+
+```sh [yarn]
+$ yarn add @wpmoo/toolkit
+```
+
+```sh [bun]
+$ bun add @wpmoo/toolkit
+```
+
+:::
+
+For one-off local environment creation, you can also run it without adding a
+dependency:
+
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit
+```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit
+```
+
+:::
 
 Aliases are available for shorter commands:
 
-```bash
-npx wpmoo
-npx @wpmoo/odoo
+::: code-group
+
+```sh [npm]
+$ npx wpmoo
+$ npx @wpmoo/odoo
 ```
+
+```sh [pnpm]
+$ pnpm dlx wpmoo
+$ pnpm dlx @wpmoo/odoo
+```
+
+```sh [yarn]
+$ yarn dlx wpmoo
+$ yarn dlx @wpmoo/odoo
+```
+
+```sh [bun]
+$ bunx wpmoo
+$ bunx @wpmoo/odoo
+```
+
+:::
 
 ## Guided Setup
 
 From the workspace where you keep Odoo projects:
 
-```bash
-npx @wpmoo/toolkit
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit
+```
+
+:::
 
 If the current directory is not already a WPMoo environment, the CLI opens the
 create flow. It asks for:
@@ -49,24 +123,45 @@ environment first and connect repositories later.
 
 After setup:
 
-```bash
-cd <product>_dev
-./moo
+```sh
+$ cd <product>_dev
+$ ./moo
 ```
 
 Add a source repository later from the cockpit or with:
 
-```bash
-npx @wpmoo/toolkit add-repo \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit add-repo \
   --repo-url https://github.com/example-org/odoo_sample_module.git
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo_sample_module.git
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo_sample_module.git
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo_sample_module.git
+```
+
+:::
 
 ## Scripted Setup
 
 For repeatable setup:
 
-```bash
-npx @wpmoo/toolkit create \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit create \
   --product odoo_sample_module \
   --odoo-version 19.0 \
   --dev-repo-url https://github.com/example-org/odoo_sample_module_dev.git \
@@ -74,14 +169,68 @@ npx @wpmoo/toolkit create \
   --init-empty-repos
 ```
 
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit create \
+  --product odoo_sample_module \
+  --odoo-version 19.0 \
+  --dev-repo-url https://github.com/example-org/odoo_sample_module_dev.git \
+  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
+  --init-empty-repos
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit create \
+  --product odoo_sample_module \
+  --odoo-version 19.0 \
+  --dev-repo-url https://github.com/example-org/odoo_sample_module_dev.git \
+  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
+  --init-empty-repos
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit create \
+  --product odoo_sample_module \
+  --odoo-version 19.0 \
+  --dev-repo-url https://github.com/example-org/odoo_sample_module_dev.git \
+  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
+  --init-empty-repos
+```
+
+:::
+
 Preview the generated files without writing:
 
-```bash
-npx @wpmoo/toolkit create \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit create \
   --product odoo_sample_module \
   --source-repo-url https://github.com/example-org/odoo_sample_module.git \
   --dry-run
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit create \
+  --product odoo_sample_module \
+  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
+  --dry-run
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit create \
+  --product odoo_sample_module \
+  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
+  --dry-run
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit create \
+  --product odoo_sample_module \
+  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
+  --dry-run
+```
+
+:::
 
 ## Source Types
 
