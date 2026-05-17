@@ -6,6 +6,11 @@ export default defineConfig({
   description: 'Free MIT-licensed tooling for calmer Odoo development workflows',
 
   themeConfig: {
+    logo: {
+      src: '/assets/wpmoo-logo.webp',
+      alt: 'WPMoo Toolkit logo'
+    },
+
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Docs', link: '/guide/getting-started' },

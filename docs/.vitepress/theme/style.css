@@ -91,6 +91,8 @@
   --vp-button-brand-active-border: transparent;
   --vp-button-brand-active-text: var(--vp-c-white);
   --vp-button-brand-active-bg: var(--vp-c-brand-1);
+
+  --vp-nav-logo-height: 28px;
 }
 
 /**
