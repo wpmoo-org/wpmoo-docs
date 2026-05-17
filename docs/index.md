@@ -2,51 +2,160 @@
 layout: home
 
 hero:
-  name: "WPMoo Tool"
-  text: "for Odoo development workflows"
-  tagline: Create and operate repeatable Docker Compose-based Odoo development environments with a guided CLI cockpit.
+  name: "WPMoo Toolkit"
+  text: "Calmer Odoo development workflows"
+  tagline: Free MIT-licensed tooling for creating, operating, and recovering local Odoo development environments.
   actions:
     - theme: brand
-      text: Try WPMoo Tool
-      link: https://www.npmjs.com/package/@wpmoo/odoo
+      text: Quick Setup
+      link: /guide/getting-started
     - theme: alt
-      text: View on GitHub
-      link: https://github.com/wpmoo-org/wpmoo-odoo
+      text: Command Reference
+      link: /reference/commands
+    - theme: alt
+      text: GitHub
+      link: https://github.com/wpmoo-org/wpmoo-toolkit
 
 features:
-  - title: Development-first Odoo toolkit
-    details: WPMoo Tool creates local Odoo environments from a product repository and one or more source repositories.
-  - title: Guided cockpit and direct commands for Odoo workflows
-    details: Use an interactive terminal cockpit for daily work or direct commands for automation and repeatable terminal workflows.
-  - title: Git submodule source layout
-    details: Product source repositories live under odoo/custom/src/private as Git submodules pinned to the selected Odoo version branch.
-  - title: Docker Compose resources
-    details: Runtime assets are copied from wpmoo-org/odoo-docker-compose instead of being embedded into the TypeScript package.
-  - title: Agent Skills for Odoo workflows
-    details: Generated environments can include project-local Agent Skills from wpmoo-org/odoo-skills for Odoo workflows.
-  - title: Recovery-oriented workflow for Odoo teams
-    details: Status, doctor, and safe reset commands help inspect environments and refresh generated files without touching product source code.
+  - title: Local-first
+    details: Start with a repeatable local Odoo environment before deciding how much infrastructure you need.
+  - title: Source code stays separate
+    details: Product repositories live as Git submodules under a predictable Odoo source layout.
+  - title: Daily work has a cockpit
+    details: Services, modules, databases, diagnostics, repositories, and recovery live in one terminal menu.
 ---
 
 ::: warning Pre-1.0 active development
-WPMoo Tool is an independent project and is not affiliated with, endorsed by, or sponsored by Odoo S.A. Odoo is a trademark of Odoo S.A.
+WPMoo Toolkit is independent from Odoo S.A. and is not affiliated with,
+endorsed by, or sponsored by Odoo S.A.
 
-WPMoo Tool has not reached `1.0.0` yet. Until the `1.0.0` release, use it as a preview tool for evaluation, local trials, and feedback rather than a dependency for critical production workflows. Setup conventions and command behavior may still change between pre-1.0 releases.
+The project is still pre-1.0. Use it for evaluation, local trials, and feedback
+before relying on it for critical production workflows.
 :::
 
-## Quick Start
+<div class="home-visual">
+  <img src="/assets/wpmoo-banner.png" alt="WPMoo Toolkit for Odoo development workflows">
+</div>
 
-Run the guided wizard from a workspace directory:
+## Why We Built It
+
+Odoo development has strong pieces, but the day-to-day workflow can still feel
+fragile. One project has hand-written Compose files. Another has source code
+mixed with generated runtime files. Someone resets a database without a
+snapshot. A new developer spends the first day learning the local setup instead
+of the module they came to change.
+
+Doodba and odoo.build are valuable parts of the Odoo ecosystem. For our own
+work, we still wanted a smaller layer: a friendly local development workflow
+that creates a known folder layout, keeps product source repositories separate,
+and gives developers a cockpit for the tasks they run every day.
+
+WPMoo Toolkit is that layer. It does not try to be the whole deployment story.
+It gives Odoo teams a practical starting point that is easy to inspect, easy to
+reset, and safer to operate.
+
+## What It Solves
+
+- Creates repeatable Docker Compose based Odoo development environments.
+- Keeps source repositories in `private`, `oca`, or `external` submodule paths.
+- Gives daily Odoo work a guided terminal cockpit and matching direct commands.
+- Adds status, doctor, snapshot, restore, and safe reset workflows.
+- Refreshes generated files without deleting product source code.
+
+## Prerequisites
+
+- Node.js `20.17+`
+- Git
+- Docker and Docker Compose
+- Optional: GitHub CLI (`gh`) for GitHub-connected setup
 
 ```bash
+brew install gh
+gh auth login
+```
+
+GitHub CLI is optional. You can start local-only and add repositories later.
+
+## Quick Setup
+
+Run the wizard from the workspace where you keep Odoo projects:
+
+```bash
+npx @wpmoo/toolkit
+```
+
+Short aliases:
+
+```bash
+npx wpmoo
 npx @wpmoo/odoo
 ```
 
-If the current directory is not already a WPMoo environment, the CLI opens the create flow. It asks for the product slug, Odoo version, and environment folder. Choose any environment folder; the default is `./<product>_dev`.
+After the environment is created:
 
-## What WPMoo Tool provides for Odoo development workflows
+```bash
+cd <product>_dev
+./moo
+```
 
-- A repeatable environment layout for Odoo module and product development.
-- A practical cockpit for Odoo services, modules, database tasks, diagnostics, repositories, and maintenance.
-- Direct commands such as `status`, `doctor`, `add-repo`, `add-module`, `reset`, `start`, `logs`, `install`, `update`, and `test`.
-- Safe reset behavior that refreshes generated files while preserving source repositories and product code.
+For a scripted setup:
+
+```bash
+npx @wpmoo/toolkit create \
+  --product odoo_sample_module \
+  --odoo-version 19.0 \
+  --dev-repo-url https://github.com/example-org/odoo_sample_module_dev.git \
+  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
+  --init-empty-repos
+```
+
+## Main Cockpit Menu
+
+```text
+WPMoo Cockpit
+|-- Command palette /
+|   |-- search commands such as /test, /logs, /doctor, /safe-reset
+|-- Services
+|   |-- start
+|   |-- stop
+|   |-- restart
+|   |-- logs
+|   `-- shell
+|-- Modules
+|   |-- install
+|   |-- update
+|   |-- test
+|   |-- lint
+|   |-- pot
+|   |-- add-module
+|   `-- remove-module
+|-- Database
+|   |-- psql
+|   |-- snapshot
+|   |-- restore-snapshot
+|   `-- resetdb
+|-- Diagnostics
+|   |-- status
+|   `-- doctor
+|-- Repositories
+|   |-- add-repo
+|   `-- remove-repo
+|-- Maintenance
+|   `-- safe-reset
+`-- Exit
+```
+
+## Keep Reading
+
+- [Getting Started](/guide/getting-started)
+- [Cockpit Guide](/guide/cockpit)
+- [Command Reference](/reference/commands)
+- [Generated Environments](/reference/generated-environments)
+- [Recovery Workflows](/operations/recovery)
+- [Acknowledgements](/acknowledgements)
+
+## Free And MIT Licensed
+
+WPMoo Toolkit is free software released under the MIT License. It is built for
+Odoo teams who want a calmer development workflow without locking their project
+into a proprietary setup.
