@@ -3,8 +3,11 @@ layout: home
 
 hero:
   name: "WPMoo Toolkit"
-  text: "Calmer Odoo development workflows"
+  text: "Create. Work. Recover."
   tagline: Free MIT-licensed tooling for creating, operating, and recovering local Odoo development environments.
+  image:
+    src: /assets/wpmoo-logo.webp
+    alt: WPMoo Toolkit logo
   actions:
     - theme: brand
       text: Quick Setup
