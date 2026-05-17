@@ -25,6 +25,10 @@ features:
     details: Services, modules, databases, diagnostics, repositories, and recovery live in one terminal menu.
 ---
 
+<div class="home-visual">
+  <img src="/assets/wpmoo-banner.png" alt="WPMoo Toolkit for Odoo development workflows">
+</div>
+
 ::: warning Pre-1.0 active development
 WPMoo Toolkit is independent from Odoo S.A. and is not affiliated with,
 endorsed by, or sponsored by Odoo S.A.
@@ -32,10 +36,6 @@ endorsed by, or sponsored by Odoo S.A.
 The project is still pre-1.0. Use it for evaluation, local trials, and feedback
 before relying on it for critical production workflows.
 :::
-
-<div class="home-visual">
-  <img src="/assets/wpmoo-banner.png" alt="WPMoo Toolkit for Odoo development workflows">
-</div>
 
 ## Why We Built It
 
