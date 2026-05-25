@@ -198,6 +198,62 @@
   background-color: var(--wpmoo-feature-bg, var(--vp-c-brand-soft));
 }
 
+.VPHomeFeatures .VPFeature .box {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(113, 75, 103, 0.055);
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.VPHomeFeatures .VPFeature .box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(
+      240px circle at var(--wpmoo-glow-x, 50%) var(--wpmoo-glow-y, 50%),
+      rgba(74, 168, 224, 0.14),
+      rgba(180, 138, 199, 0.09) 34%,
+      rgba(162, 70, 137, 0.045) 52%,
+      transparent 76%
+    );
+  transition: opacity 0.22s ease;
+}
+
+.VPHomeFeatures .VPFeature .box > * {
+  position: relative;
+  z-index: 1;
+}
+
+.VPHomeFeatures .VPFeature:hover .box,
+.VPHomeFeatures .VPFeature:focus-visible .box {
+  transform: translateY(-2px);
+  border-color: rgba(180, 138, 199, 0.095);
+  box-shadow:
+    0 10px 26px rgba(52, 72, 110, 0.08),
+    0 2px 8px rgba(162, 70, 137, 0.035);
+}
+
+.VPHomeFeatures .VPFeature:hover .box::before,
+.VPHomeFeatures .VPFeature:focus-visible .box::before {
+  opacity: 1;
+}
+
+.dark .VPHomeFeatures .VPFeature .box {
+  border-color: rgba(216, 169, 200, 0.065);
+}
+
+.dark .VPHomeFeatures .VPFeature:hover .box,
+.dark .VPHomeFeatures .VPFeature:focus-visible .box {
+  border-color: rgba(216, 169, 200, 0.105);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+}
+
 .VPFeature .icon svg {
   width: 24px;
   height: 24px;
