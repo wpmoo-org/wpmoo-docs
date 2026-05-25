@@ -216,10 +216,10 @@
   opacity: 0;
   background:
     radial-gradient(
-      240px circle at var(--wpmoo-glow-x, 50%) var(--wpmoo-glow-y, 50%),
-      rgba(74, 168, 224, 0.14),
-      rgba(180, 138, 199, 0.09) 34%,
-      rgba(162, 70, 137, 0.045) 52%,
+      220px circle at var(--wpmoo-glow-x, 50%) var(--wpmoo-glow-y, 50%),
+      rgba(74, 168, 224, 0.075),
+      rgba(180, 138, 199, 0.05) 34%,
+      rgba(162, 70, 137, 0.024) 52%,
       transparent 76%
     );
   transition: opacity 0.22s ease;
@@ -232,11 +232,11 @@
 
 .VPHomeFeatures .VPFeature:hover .box,
 .VPHomeFeatures .VPFeature:focus-visible .box {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   border-color: rgba(180, 138, 199, 0.095);
   box-shadow:
-    0 10px 26px rgba(52, 72, 110, 0.08),
-    0 2px 8px rgba(162, 70, 137, 0.035);
+    0 7px 18px rgba(52, 72, 110, 0.05),
+    0 1px 5px rgba(162, 70, 137, 0.02);
 }
 
 .VPHomeFeatures .VPFeature:hover .box::before,
@@ -251,7 +251,7 @@
 .dark .VPHomeFeatures .VPFeature:hover .box,
 .dark .VPHomeFeatures .VPFeature:focus-visible .box {
   border-color: rgba(216, 169, 200, 0.105);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
 }
 
 .VPFeature .icon svg {
