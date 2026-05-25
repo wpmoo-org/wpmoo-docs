@@ -1,15 +1,34 @@
 # Generated Environments
 
-A generated environment is a separate repository, usually named
-`<product>_dev`.
+A generated environment is a separate repository, usually named:
 
-It contains the local runtime files and generated workflow files. Product source
-code lives in child source repositories under `odoo/custom/src`.
+```text
+<product>_dev
+```
+
+It owns runtime wiring, helper scripts, generated docs, metadata, and local
+operations. Product addon source code lives in source repositories under
+`odoo/custom/src`.
+
+## What Lives Where
+
+| Area | Owned by | Safe reset behavior |
+| --- | --- | --- |
+| Compose files | WPMoo generated environment | Refreshed. |
+| `./moo` and `scripts/` | WPMoo generated environment | Refreshed. |
+| `.wpmoo/odoo.json` | WPMoo generated environment | Refreshed from current metadata. |
+| `.env` | Local developer/operator | Preserved. |
+| database and filestore data | Local runtime | Preserved. |
+| `odoo/custom/src/private` | Source repositories | Preserved. |
+| `odoo/custom/src/oca` | Source repositories | Preserved. |
+| `odoo/custom/src/external` | Source repositories | Preserved. |
+| `odoo/custom/manifests` | Source metadata and pins | Preserved and repairable. |
+| `odoo/custom/patches` | Local patches | Preserved. |
 
 ## Layout
 
 ```text
-odoo_sample_module_dev/
+my_product_dev/
 |-- .wpmoo/
 |   `-- odoo.json
 |-- .env.example
@@ -25,13 +44,15 @@ odoo_sample_module_dev/
 |   |-- proxy.yaml
 |   `-- tools.yaml
 |-- config/
-|   `-- odoo/
-|       `-- odoo.conf
-|-- docs/
+|   |-- odoo/
+|   |   |-- odoo.conf
+|   |   `-- requirements.txt
+|   `-- logrotate/
 |-- resources/
 |   `-- odoo/
 |       `-- entrypoint.sh
 |-- moo
+|-- scripts/
 |-- odoo/
 |   `-- custom/
 |       |-- manifests/
@@ -40,26 +61,26 @@ odoo_sample_module_dev/
 |           |-- private/
 |           |-- oca/
 |           `-- external/
-`-- scripts/
+`-- docs/
 ```
 
 ## Metadata
 
-`.wpmoo/odoo.json` records the selected Odoo version, product slug, source
-repositories, ports, external resource refs, and generated file settings.
+`.wpmoo/odoo.json` records the selected Odoo version, product slug, ports,
+source repositories, external resource refs, and generated file settings.
 
-WPMoo commands use this metadata instead of guessing from the filesystem.
+WPMoo commands use this file instead of guessing from the filesystem.
 
 ## Compose Overlays
 
-Development uses:
+Local development uses:
 
 ```text
 compose.yaml
 compose/dev.yaml
 ```
 
-Other overlays are available for specific workflows:
+Additional overlays are available for specific workflows:
 
 ```text
 debug
@@ -70,8 +91,31 @@ proxy
 tools
 ```
 
-Production-like modes require non-default secrets before Compose is allowed to
-run.
+Stage and production-like modes are guarded. They require production-grade
+secrets and explicit safety flags before risky lifecycle or destructive
+database commands run.
+
+## Daily Command Hub
+
+The generated root includes:
+
+```text
+./moo
+```
+
+Use it for local work:
+
+```bash
+./moo start
+./moo update my_module
+./moo test my_module
+./moo snapshot devel before-change
+./moo doctor
+```
+
+`./moo status`, `./moo doctor`, and `./moo gate` route through the package
+diagnostic and gate implementation so generated environments stay aligned with
+the installed Toolkit release.
 
 ## Source Repositories
 
@@ -83,23 +127,49 @@ odoo/custom/src/oca/
 odoo/custom/src/external/
 ```
 
-The generated source manifest lives at:
+The source manifest lives here:
 
 ```text
 odoo/custom/manifests/sources.yaml
 ```
 
-It mirrors source repository metadata and addon boundaries for tooling,
-automation, and review.
+Use it with:
+
+```bash
+npx @wpmoo/toolkit source list
+npx @wpmoo/toolkit source sync
+```
 
 ## External Resources
 
-WPMoo keeps the npm package small by copying runtime resources from external
-resource repositories:
+WPMoo keeps the npm package small by copying runtime resources from standalone
+resources:
 
 ```text
 gh:wpmoo-org/odoo-docker-compose
 gh:wpmoo-org/odoo-skills
 ```
 
-These can be pinned by ref when you need repeatable scaffolding.
+You can pin refs during creation:
+
+```bash
+npx @wpmoo/toolkit create \
+  --product my_product \
+  --source-repo-url https://github.com/example-org/my_product.git \
+  --compose-template-ref v0.1.0 \
+  --agent-skills-template \
+  --agent-skills-template-ref v0.1.0
+```
+
+## When To Regenerate
+
+Use safe reset when generated files drift, templates improve, or an older
+environment needs a refresh:
+
+```bash
+npx @wpmoo/toolkit reset --dry-run
+npx @wpmoo/toolkit reset
+```
+
+Safe reset is designed to preserve source repositories and runtime data. Use
+the dry run first.

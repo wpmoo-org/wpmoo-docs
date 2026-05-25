@@ -5,189 +5,124 @@ WPMoo is designed around recoverable local development.
 Generated files can be refreshed. Source repositories are preserved. Database
 work has snapshot and dry-run paths.
 
-## Status
+## If The Environment Feels Broken
 
-`status` is fast and local:
+Start with fast local status:
 
-::: code-group
-
-```sh [npm]
-$ npx @wpmoo/toolkit status
-$ npx @wpmoo/toolkit status --json
+```bash
+./moo status
 ```
 
-```sh [pnpm]
-$ pnpm dlx @wpmoo/toolkit status
-$ pnpm dlx @wpmoo/toolkit status --json
+Then run doctor:
+
+```bash
+./moo doctor
 ```
 
-```sh [yarn]
-$ yarn dlx @wpmoo/toolkit status
-$ yarn dlx @wpmoo/toolkit status --json
+Apply safe file-level repairs only when the output says fixes are available:
+
+```bash
+./moo doctor --fix
 ```
 
-```sh [bun]
-$ bunx @wpmoo/toolkit status
-$ bunx @wpmoo/toolkit status --json
+If PostgreSQL is running and you want read-only database diagnostics:
+
+```bash
+./moo doctor --postgres
 ```
 
-:::
+## Before Risky Work
 
-It reports whether the environment is detected, which Odoo version is selected,
-how many source repositories are configured, how many modules are visible, and
-which core files are missing.
+Create a snapshot:
 
-## Doctor
-
-`doctor` performs deeper checks:
-
-::: code-group
-
-```sh [npm]
-$ npx @wpmoo/toolkit doctor
+```bash
+./moo snapshot devel before-refactor
 ```
 
-```sh [pnpm]
-$ pnpm dlx @wpmoo/toolkit doctor
+List snapshots:
+
+```bash
+./moo snapshot --list
 ```
 
-```sh [yarn]
-$ yarn dlx @wpmoo/toolkit doctor
+Preview restore before changing data:
+
+```bash
+./moo restore-snapshot --dry-run before-refactor devel
 ```
 
-```sh [bun]
-$ bunx @wpmoo/toolkit doctor
+Restore intentionally:
+
+```bash
+./moo restore-snapshot before-refactor devel
 ```
 
-:::
+## When Generated Files Drift
 
-It checks metadata, source paths, compose files, generated scripts, Docker CLI
-access, Docker Compose access, GitHub CLI availability, and source manifest
-consistency.
+Preview a safe reset:
 
-Use safe repairs when available:
-
-::: code-group
-
-```sh [npm]
-$ npx @wpmoo/toolkit doctor --fix
+```bash
+npx @wpmoo/toolkit reset --dry-run
 ```
 
-```sh [pnpm]
-$ pnpm dlx @wpmoo/toolkit doctor --fix
+Then refresh generated files:
+
+```bash
+npx @wpmoo/toolkit reset
 ```
 
-```sh [yarn]
-$ yarn dlx @wpmoo/toolkit doctor --fix
+Run checks after reset:
+
+```bash
+./moo doctor
+./moo status
 ```
 
-```sh [bun]
-$ bunx @wpmoo/toolkit doctor --fix
-```
-
-:::
-
-## Snapshots
-
-Before risky local work:
-
-```sh
-$ ./moo snapshot devel before-update
-```
-
-Preview a restore first:
-
-```sh
-$ ./moo restore-snapshot --dry-run before-update devel
-```
-
-Then restore when the plan is correct:
-
-```sh
-$ ./moo restore-snapshot before-update devel
-```
-
-## Safe Reset
-
-Safe reset refreshes generated files without deleting product source code:
-
-::: code-group
-
-```sh [npm]
-$ npx @wpmoo/toolkit reset --dry-run
-$ npx @wpmoo/toolkit reset
-```
-
-```sh [pnpm]
-$ pnpm dlx @wpmoo/toolkit reset --dry-run
-$ pnpm dlx @wpmoo/toolkit reset
-```
-
-```sh [yarn]
-$ yarn dlx @wpmoo/toolkit reset --dry-run
-$ yarn dlx @wpmoo/toolkit reset
-```
-
-```sh [bun]
-$ bunx @wpmoo/toolkit reset --dry-run
-$ bunx @wpmoo/toolkit reset
-```
-
-:::
-
-It preserves:
+Safe reset preserves:
 
 - `.env`
-- database and filestore runtime data
+- runtime database data
+- filestore data
 - backups
 - source repositories under `odoo/custom/src`
-- custom patches and manifests
+- custom manifests
+- custom patches
 
 It can refresh:
 
 - `.wpmoo/odoo.json`
-- `moo`
+- `./moo`
 - generated docs
 - Compose files
-- scripts
+- helper scripts
 - optional project-local Agent Skills
 
-## Recommended Pattern
+## Common Recovery Playbooks
 
-::: code-group
+| Situation | First command | Next step |
+| --- | --- | --- |
+| Cockpit disables module actions | `./moo status` | Add/sync source repos or add a module. |
+| Docker or database is not ready | `./moo doctor` | Start Docker or restart services. |
+| Source manifest looks stale | `npx @wpmoo/toolkit source sync --dry-run` | Run `source sync` if the preview is correct. |
+| Generated files were edited or lost | `npx @wpmoo/toolkit reset --dry-run` | Run safe reset, then doctor. |
+| Test failure is unclear | `./moo test my_module` | Read the printed log excerpt and full log path. |
+| Risky migration or refactor ahead | `./moo snapshot devel before-change` | Run update/test, then restore preview if needed. |
 
-```sh [npm]
-$ ./moo snapshot devel before-reset
-$ npx @wpmoo/toolkit reset --dry-run
-$ npx @wpmoo/toolkit reset
-$ npx @wpmoo/toolkit doctor --fix
-$ ./moo restore-snapshot --dry-run before-reset devel
+## Stage And Production Preview
+
+In stage and production-like modes, prefer read-only or dry-run commands first:
+
+```bash
+WPMOO_ENV=prod ./moo status
+WPMOO_ENV=prod ./moo doctor
+WPMOO_ENV=prod ./moo doctor --postgres
+WPMOO_ENV=prod ./moo restore-snapshot --dry-run before-change devel
 ```
 
-```sh [pnpm]
-$ ./moo snapshot devel before-reset
-$ pnpm dlx @wpmoo/toolkit reset --dry-run
-$ pnpm dlx @wpmoo/toolkit reset
-$ pnpm dlx @wpmoo/toolkit doctor --fix
-$ ./moo restore-snapshot --dry-run before-reset devel
-```
+Lifecycle and destructive commands require explicit flags. See
+[Quality Gates](/guide/quality-gates#stage-and-production-guards).
 
-```sh [yarn]
-$ ./moo snapshot devel before-reset
-$ yarn dlx @wpmoo/toolkit reset --dry-run
-$ yarn dlx @wpmoo/toolkit reset
-$ yarn dlx @wpmoo/toolkit doctor --fix
-$ ./moo restore-snapshot --dry-run before-reset devel
-```
+## Troubleshooting
 
-```sh [bun]
-$ ./moo snapshot devel before-reset
-$ bunx @wpmoo/toolkit reset --dry-run
-$ bunx @wpmoo/toolkit reset
-$ bunx @wpmoo/toolkit doctor --fix
-$ ./moo restore-snapshot --dry-run before-reset devel
-```
-
-:::
-
-Run the real restore only when the dry-run output matches what you expect.
+For specific failure states, open the [Troubleshooting](/operations/troubleshooting)
+guide.

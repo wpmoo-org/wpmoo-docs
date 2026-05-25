@@ -23,6 +23,9 @@ export default defineConfig({
         items: [
           { text: 'Getting Started', link: '/guide/getting-started' },
           { text: 'Cockpit', link: '/guide/cockpit' },
+          { text: 'Source Layout', link: '/guide/source-layout' },
+          { text: 'Module Workflow', link: '/guide/module-workflow' },
+          { text: 'Quality Gates', link: '/guide/quality-gates' },
         ],
       },
       {
@@ -36,6 +39,7 @@ export default defineConfig({
         text: 'Operations',
         items: [
           { text: 'Recovery', link: '/operations/recovery' },
+          { text: 'Troubleshooting', link: '/operations/troubleshooting' },
           { text: 'Acknowledgements', link: '/acknowledgements' },
         ],
       },

@@ -1,240 +1,107 @@
 # Getting Started
 
-WPMoo Toolkit creates a generated Odoo development environment from a product
-name, an Odoo version, and optional source repositories.
+WPMoo Toolkit creates a repeatable Odoo development environment for a product.
+It gives you a generated runtime repository, keeps addon source repositories
+separate, and gives daily work one command hub: `./moo`.
 
-The generated environment is meant to be boring. Runtime files, Compose files,
-metadata, helper scripts, docs, and recovery commands live in the generated
-repository. Product source code stays in source repositories under
-`odoo/custom/src`.
+Use this guide when you want to create your first environment and understand
+what happens next.
 
-## Install Nothing First
+## Before You Start
 
-You can add WPMoo Toolkit to a project with the package manager you already use:
+You need:
 
-::: code-group
+- Node.js 20.17 or newer.
+- Docker and Docker Compose.
+- Git.
+- GitHub CLI only if you want WPMoo to create or check GitHub repositories for
+  you.
 
-```sh [npm]
-$ npm i @wpmoo/toolkit
+The create flow checks the required local tools before writing files. If Docker
+or Git is not ready, WPMoo stops early and tells you what to fix.
+
+## Start In Three Commands
+
+Run the setup wizard:
+
+```bash
+npx @wpmoo/toolkit
 ```
 
-```sh [pnpm]
-$ pnpm add @wpmoo/toolkit
+Enter the generated environment:
+
+```bash
+cd <product>_dev
 ```
 
-```sh [yarn]
-$ yarn add @wpmoo/toolkit
+Open the cockpit:
+
+```bash
+./moo
 ```
 
-```sh [bun]
-$ bun add @wpmoo/toolkit
-```
+Outside a generated environment, `npx @wpmoo/toolkit` opens the create flow.
+Inside a generated environment, it opens the cockpit.
 
-:::
+## Interactive Setup
 
-For one-off local environment creation, you can also run it without adding a
-dependency:
-
-::: code-group
-
-```sh [npm]
-$ npx @wpmoo/toolkit
-```
-
-```sh [pnpm]
-$ pnpm dlx @wpmoo/toolkit
-```
-
-```sh [yarn]
-$ yarn dlx @wpmoo/toolkit
-```
-
-```sh [bun]
-$ bunx @wpmoo/toolkit
-```
-
-:::
-
-Aliases are available for shorter commands:
-
-::: code-group
-
-```sh [npm]
-$ npx wpmoo
-$ npx @wpmoo/odoo
-```
-
-```sh [pnpm]
-$ pnpm dlx wpmoo
-$ pnpm dlx @wpmoo/odoo
-```
-
-```sh [yarn]
-$ yarn dlx wpmoo
-$ yarn dlx @wpmoo/odoo
-```
-
-```sh [bun]
-$ bunx wpmoo
-$ bunx @wpmoo/odoo
-```
-
-:::
-
-## Guided Setup
-
-From the workspace where you keep Odoo projects:
-
-::: code-group
-
-```sh [npm]
-$ npx @wpmoo/toolkit
-```
-
-```sh [pnpm]
-$ pnpm dlx @wpmoo/toolkit
-```
-
-```sh [yarn]
-$ yarn dlx @wpmoo/toolkit
-```
-
-```sh [bun]
-$ bunx @wpmoo/toolkit
-```
-
-:::
-
-If the current directory is not already a WPMoo environment, the CLI opens the
-create flow. It asks for:
+The wizard asks for:
 
 - product slug
 - Odoo version
 - target environment folder
-- optional GitHub or local-only repository setup
+- local-only or GitHub-backed repository setup
 - optional source repositories
 
-The default target folder is `./<product>_dev`.
+The default target folder is:
 
-## Local-Only Setup
-
-GitHub CLI is optional. Choose local-only setup when you want to create the
-environment first and connect repositories later.
-
-After setup:
-
-```sh
-$ cd <product>_dev
-$ ./moo
+```text
+./<product>_dev
 ```
 
-Add a source repository later from the cockpit or with:
-
-::: code-group
-
-```sh [npm]
-$ npx @wpmoo/toolkit add-repo \
-  --repo-url https://github.com/example-org/odoo_sample_module.git
-```
-
-```sh [pnpm]
-$ pnpm dlx @wpmoo/toolkit add-repo \
-  --repo-url https://github.com/example-org/odoo_sample_module.git
-```
-
-```sh [yarn]
-$ yarn dlx @wpmoo/toolkit add-repo \
-  --repo-url https://github.com/example-org/odoo_sample_module.git
-```
-
-```sh [bun]
-$ bunx @wpmoo/toolkit add-repo \
-  --repo-url https://github.com/example-org/odoo_sample_module.git
-```
-
-:::
+Choose local-only setup when you want to get an environment running first and
+connect repositories later.
 
 ## Scripted Setup
 
-For repeatable setup:
+Use `create` when you want repeatable setup in a script or team onboarding
+guide:
 
-::: code-group
-
-```sh [npm]
-$ npx @wpmoo/toolkit create \
-  --product odoo_sample_module \
+```bash
+npx @wpmoo/toolkit create \
+  --product my_product \
   --odoo-version 19.0 \
-  --dev-repo-url https://github.com/example-org/odoo_sample_module_dev.git \
-  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
-  --init-empty-repos
+  --target ./my_product_dev \
+  --source-repo-url https://github.com/example-org/my_product.git
 ```
 
-```sh [pnpm]
-$ pnpm dlx @wpmoo/toolkit create \
-  --product odoo_sample_module \
-  --odoo-version 19.0 \
-  --dev-repo-url https://github.com/example-org/odoo_sample_module_dev.git \
-  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
-  --init-empty-repos
-```
+Preview the generated files without writing them:
 
-```sh [yarn]
-$ yarn dlx @wpmoo/toolkit create \
-  --product odoo_sample_module \
-  --odoo-version 19.0 \
-  --dev-repo-url https://github.com/example-org/odoo_sample_module_dev.git \
-  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
-  --init-empty-repos
-```
-
-```sh [bun]
-$ bunx @wpmoo/toolkit create \
-  --product odoo_sample_module \
-  --odoo-version 19.0 \
-  --dev-repo-url https://github.com/example-org/odoo_sample_module_dev.git \
-  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
-  --init-empty-repos
-```
-
-:::
-
-Preview the generated files without writing:
-
-::: code-group
-
-```sh [npm]
-$ npx @wpmoo/toolkit create \
-  --product odoo_sample_module \
-  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
+```bash
+npx @wpmoo/toolkit create \
+  --product my_product \
+  --source-repo-url https://github.com/example-org/my_product.git \
   --dry-run
 ```
 
-```sh [pnpm]
-$ pnpm dlx @wpmoo/toolkit create \
-  --product odoo_sample_module \
-  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
-  --dry-run
+## Add Sources Later
+
+Generated environments can start empty. Add source repositories later from the
+cockpit or with a direct command:
+
+```bash
+npx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo-addons.git \
+  --source-type private
 ```
 
-```sh [yarn]
-$ yarn dlx @wpmoo/toolkit create \
-  --product odoo_sample_module \
-  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
-  --dry-run
+Then refresh the manifest:
+
+```bash
+npx @wpmoo/toolkit source sync
 ```
 
-```sh [bun]
-$ bunx @wpmoo/toolkit create \
-  --product odoo_sample_module \
-  --source-repo-url https://github.com/example-org/odoo_sample_module.git \
-  --dry-run
-```
-
-:::
-
-## Source Types
-
-Source repositories are grouped by intent:
+Source repositories are grouped under:
 
 ```text
 odoo/custom/src/
@@ -243,9 +110,23 @@ odoo/custom/src/
 `-- external/
 ```
 
-Use `--source-type oca` or `--source-type external` when a repository should not
-go under the private source path.
+Open the [Source Layout](/guide/source-layout) guide for details.
 
-## Next Step
+## First Daily Loop
 
-Open the [Cockpit Guide](/guide/cockpit) to see the daily workflow.
+After setup, start services and run the basic checks:
+
+```bash
+./moo start
+./moo status
+./moo doctor
+```
+
+When a module exists:
+
+```bash
+./moo update my_module
+./moo test my_module
+```
+
+For the interactive workflow, continue with the [Cockpit Guide](/guide/cockpit).

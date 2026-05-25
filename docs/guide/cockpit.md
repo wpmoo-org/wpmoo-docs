@@ -1,15 +1,17 @@
 # Cockpit
 
 The cockpit is the daily terminal workspace inside a generated environment.
+Use it when you want guided actions without remembering every Docker, Odoo, or
+script command.
 
 Open it from the generated environment root:
 
-```sh
-$ ./moo
+```bash
+./moo
 ```
 
-The cockpit starts with a quick environment summary, then shows a practical menu
-for repeated local work.
+The cockpit shows a quick environment summary, then groups actions by the kind
+of work you are doing.
 
 ```text
 WPMoo Cockpit
@@ -23,7 +25,7 @@ WPMoo Cockpit
 
 ## Command Palette
 
-Press `/` inside the cockpit to search for commands such as:
+Press `/` in the cockpit to search by command or intent:
 
 ```text
 /test
@@ -32,93 +34,136 @@ Press `/` inside the cockpit to search for commands such as:
 /safe reset
 ```
 
-This is useful when you know the action but do not want to walk through
-categories. Press `Ctrl+C` to exit the cockpit.
+This is useful when you know the action but do not want to navigate categories.
+Press `Ctrl+C` to leave the cockpit.
 
 ## Services
 
+Use Services for the local Odoo runtime:
+
 ```text
-Services
-|-- Start services
-|-- Stop services
-|-- Restart services
-|-- View logs
-`-- Open shell
+Start services
+Stop services
+Restart services
+View logs
+Open shell
 ```
 
-Use services for the Odoo container lifecycle and quick access to logs or a
-shell.
+Typical flow:
+
+```bash
+./moo start
+./moo logs odoo
+./moo shell
+```
+
+The cockpit disables actions that do not make sense. For example, `Start
+services` is disabled when services are already running, and database actions
+are disabled until the database is ready.
 
 ## Modules
 
+Use Modules for day-to-day addon work:
+
 ```text
-Modules
-|-- List modules
-|-- Install module
-|-- Update module
-|-- Run tests
-|-- Run environment lint
-|-- Generate POT
-|-- Add module
-`-- Remove module
+List modules
+Install module
+Update module
+Run tests
+Run environment lint
+Generate POT
+Add module
+Remove module
 ```
 
-Module actions use detected source repositories and module folders where
-possible. Run environment lint runs the configured environment lint checks.
+Module actions use detected source repositories and Odoo module folders. When a
+large module list exists, WPMoo switches to searchable module selection.
+
+The same workflow is available as direct commands:
+
+```bash
+./moo install my_module
+./moo update my_module
+./moo test my_module
+./moo lint
+./moo pot my_module
+```
+
+See [Module Workflow](/guide/module-workflow) for the full module loop.
 
 ## Database
 
+Use Database for PostgreSQL access and snapshots:
+
 ```text
-Database
-|-- Open psql
-|-- Create snapshot
-|-- Restore snapshot
-`-- Reset database
+Open psql
+Create snapshot
+Restore snapshot
+Reset database
 ```
 
-Database prompts prefer connected PostgreSQL databases. If the list cannot be
-read, WPMoo says so and falls back to manual entry.
+Preview destructive work before running it:
+
+```bash
+./moo snapshot devel before-change
+./moo restore-snapshot --dry-run before-change devel
+```
 
 ## Diagnostics
 
+Use Diagnostics when something looks wrong or before closing a development
+train:
+
 ```text
-Diagnostics
-|-- Environment status
-`-- Run doctor
+Environment status
+Run doctor
 ```
 
-`status` is fast and local. `doctor` performs deeper environment checks.
+`status` is fast and local. `doctor` performs deeper health checks.
+
+```bash
+./moo status
+./moo doctor
+./moo doctor --postgres
+```
+
+See [Quality Gates](/guide/quality-gates) for doctor, lint, policy checks, and
+train gate usage.
 
 ## Repositories
 
+Use Repositories to add or remove source repositories:
+
 ```text
-Repositories
-|-- Add source repo
-`-- Remove source repo
+Add source repo
+Remove source repo
 ```
 
-Repository actions keep source repos as Git submodules under the generated Odoo
-source layout.
+WPMoo keeps sources under `odoo/custom/src/private`, `odoo/custom/src/oca`, and
+`odoo/custom/src/external`. See [Source Layout](/guide/source-layout).
 
 ## Maintenance
 
+Use Maintenance for safe generated-file refreshes:
+
 ```text
-Maintenance
-`-- Safe reset environment
+Safe reset environment
 ```
 
-Safe reset refreshes generated files while preserving product source code.
+Safe reset refreshes generated files while preserving source repositories,
+runtime data, local patches, and manifests.
 
-## Direct Commands
+## Direct Command Map
 
-Every cockpit action maps to a direct command:
+Every cockpit action has a direct command. Use the cockpit interactively and the
+same commands in scripts or agent workflows:
 
-```sh
-$ ./moo start
-$ ./moo logs odoo
-$ ./moo update sale
-$ ./moo test sale
-$ ./moo snapshot devel before-update
+```bash
+./moo start
+./moo update my_module
+./moo test my_module
+./moo snapshot devel before-refactor
+./moo doctor
 ```
 
-Open the [Command Reference](/reference/commands) for the full map.
+Open the [Command Reference](/reference/commands) for the full command surface.
