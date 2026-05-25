@@ -20,21 +20,65 @@ quality findings such as missing actionable menus.
 
 If no modules are found, add or sync a source repository first:
 
-```bash
-npx @wpmoo/toolkit source list
-npx @wpmoo/toolkit source sync
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit source list
+$ npx @wpmoo/toolkit source sync
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit source list
+$ pnpm dlx @wpmoo/toolkit source sync
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit source list
+$ yarn dlx @wpmoo/toolkit source sync
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit source list
+$ bunx @wpmoo/toolkit source sync
+```
+
+:::
 
 ## Add A Module
 
 Create a new addon skeleton inside a source repository:
 
-```bash
-npx @wpmoo/toolkit add-module \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit add-module \
   --repo odoo-addons \
   --module my_module \
   --source-type private
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+:::
 
 WPMoo creates a minimal install-safe Odoo addon:
 
@@ -50,13 +94,41 @@ my_module/
 
 Use a scaffold profile when the addon has a known shape:
 
-```bash
-npx @wpmoo/toolkit add-module \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit add-module \
   --repo odoo-addons \
   --module my_portal_addon \
   --source-type private \
   --profile portal
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_portal_addon \
+  --source-type private \
+  --profile portal
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_portal_addon \
+  --source-type private \
+  --profile portal
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_portal_addon \
+  --source-type private \
+  --profile portal
+```
+
+:::
 
 Supported profiles:
 
@@ -139,22 +211,75 @@ Export a translation template:
 
 Remove a module registration:
 
-```bash
-npx @wpmoo/toolkit remove-module \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit remove-module \
   --repo odoo-addons \
   --module my_module \
   --source-type private
 ```
 
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit remove-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit remove-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit remove-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+:::
+
 Delete files only when you intend to remove the source directory:
 
-```bash
-npx @wpmoo/toolkit remove-module \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit remove-module \
   --repo odoo-addons \
   --module my_module \
   --source-type private \
   --delete-files
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit remove-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private \
+  --delete-files
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit remove-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private \
+  --delete-files
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit remove-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private \
+  --delete-files
+```
+
+:::
 
 WPMoo refuses dirty deletion because module directories are product source code,
 not disposable generated files.

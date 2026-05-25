@@ -37,19 +37,63 @@ Run these from a workspace or generated environment.
 
 Interactive:
 
-```bash
-npx @wpmoo/toolkit
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit
+```
+
+:::
 
 Scripted:
 
-```bash
-npx @wpmoo/toolkit create \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit create \
   --product my_product \
   --odoo-version 19.0 \
   --target ./my_product_dev \
   --source-repo-url https://github.com/example-org/my_product.git
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit create \
+  --product my_product \
+  --odoo-version 19.0 \
+  --target ./my_product_dev \
+  --source-repo-url https://github.com/example-org/my_product.git
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit create \
+  --product my_product \
+  --odoo-version 19.0 \
+  --target ./my_product_dev \
+  --source-repo-url https://github.com/example-org/my_product.git
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit create \
+  --product my_product \
+  --odoo-version 19.0 \
+  --target ./my_product_dev \
+  --source-repo-url https://github.com/example-org/my_product.git
+```
+
+:::
 
 Useful options:
 
@@ -79,29 +123,101 @@ Useful options:
 
 Inspect sources:
 
-```bash
-npx @wpmoo/toolkit source list
-npx @wpmoo/toolkit source list --json
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit source list
+$ npx @wpmoo/toolkit source list --json
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit source list
+$ pnpm dlx @wpmoo/toolkit source list --json
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit source list
+$ yarn dlx @wpmoo/toolkit source list --json
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit source list
+$ bunx @wpmoo/toolkit source list --json
+```
+
+:::
 
 Sync the source manifest:
 
-```bash
-npx @wpmoo/toolkit source sync
-npx @wpmoo/toolkit source sync --dry-run
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit source sync
+$ npx @wpmoo/toolkit source sync --dry-run
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit source sync
+$ pnpm dlx @wpmoo/toolkit source sync --dry-run
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit source sync
+$ yarn dlx @wpmoo/toolkit source sync --dry-run
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit source sync
+$ bunx @wpmoo/toolkit source sync --dry-run
+```
+
+:::
 
 Add or remove sources:
 
-```bash
-npx @wpmoo/toolkit source add \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit source add \
   --repo-url https://github.com/OCA/server-tools.git \
   --source-type oca
 
-npx @wpmoo/toolkit source remove \
+$ npx @wpmoo/toolkit source remove \
   --repo server-tools \
   --source-type oca
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit source add \
+  --repo-url https://github.com/OCA/server-tools.git \
+  --source-type oca
+
+$ pnpm dlx @wpmoo/toolkit source remove \
+  --repo server-tools \
+  --source-type oca
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit source add \
+  --repo-url https://github.com/OCA/server-tools.git \
+  --source-type oca
+
+$ yarn dlx @wpmoo/toolkit source remove \
+  --repo server-tools \
+  --source-type oca
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit source add \
+  --repo-url https://github.com/OCA/server-tools.git \
+  --source-type oca
+
+$ bunx @wpmoo/toolkit source remove \
+  --repo server-tools \
+  --source-type oca
+```
+
+:::
 
 Source types:
 
@@ -113,22 +229,75 @@ private, oca, external
 
 Add a module:
 
-```bash
-npx @wpmoo/toolkit add-module \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit add-module \
   --repo odoo-addons \
   --module my_module \
   --source-type private
 ```
 
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+:::
+
 Add a profile-based module:
 
-```bash
-npx @wpmoo/toolkit add-module \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit add-module \
   --repo odoo-addons \
   --module my_portal_addon \
   --source-type private \
   --profile portal
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_portal_addon \
+  --source-type private \
+  --profile portal
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_portal_addon \
+  --source-type private \
+  --profile portal
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_portal_addon \
+  --source-type private \
+  --profile portal
+```
+
+:::
 
 Supported profiles:
 
@@ -138,22 +307,75 @@ core, documents, scoring, portal, exhibition, ai_review, mail, pro
 
 Remove a module:
 
-```bash
-npx @wpmoo/toolkit remove-module \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit remove-module \
   --repo odoo-addons \
   --module my_module \
   --source-type private
 ```
 
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit remove-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit remove-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit remove-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+:::
+
 Delete module files only when intended:
 
-```bash
-npx @wpmoo/toolkit remove-module \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit remove-module \
   --repo odoo-addons \
   --module my_module \
   --source-type private \
   --delete-files
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit remove-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private \
+  --delete-files
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit remove-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private \
+  --delete-files
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit remove-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private \
+  --delete-files
+```
+
+:::
 
 ## Daily `./moo` Commands
 
@@ -205,15 +427,49 @@ Options:
 
 Machine-readable output is available for:
 
-```bash
-npx @wpmoo/toolkit status --json
-npx @wpmoo/toolkit source list --json
-npx @wpmoo/toolkit source sync --json
-npx @wpmoo/toolkit doctor --json
-npx @wpmoo/toolkit doctor --json --postgres
-npx @wpmoo/toolkit doctor --json --fail-on-warning
-./moo gate --modules my_module --json
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit status --json
+$ npx @wpmoo/toolkit source list --json
+$ npx @wpmoo/toolkit source sync --json
+$ npx @wpmoo/toolkit doctor --json
+$ npx @wpmoo/toolkit doctor --json --postgres
+$ npx @wpmoo/toolkit doctor --json --fail-on-warning
+$ ./moo gate --modules my_module --json
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit status --json
+$ pnpm dlx @wpmoo/toolkit source list --json
+$ pnpm dlx @wpmoo/toolkit source sync --json
+$ pnpm dlx @wpmoo/toolkit doctor --json
+$ pnpm dlx @wpmoo/toolkit doctor --json --postgres
+$ pnpm dlx @wpmoo/toolkit doctor --json --fail-on-warning
+$ ./moo gate --modules my_module --json
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit status --json
+$ yarn dlx @wpmoo/toolkit source list --json
+$ yarn dlx @wpmoo/toolkit source sync --json
+$ yarn dlx @wpmoo/toolkit doctor --json
+$ yarn dlx @wpmoo/toolkit doctor --json --postgres
+$ yarn dlx @wpmoo/toolkit doctor --json --fail-on-warning
+$ ./moo gate --modules my_module --json
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit status --json
+$ bunx @wpmoo/toolkit source list --json
+$ bunx @wpmoo/toolkit source sync --json
+$ bunx @wpmoo/toolkit doctor --json
+$ bunx @wpmoo/toolkit doctor --json --postgres
+$ bunx @wpmoo/toolkit doctor --json --fail-on-warning
+$ ./moo gate --modules my_module --json
+```
+
+:::
 
 Contract notes:
 
@@ -241,9 +497,25 @@ Stage and production-like commands are guarded.
 
 Use this in new docs and automation:
 
-```bash
-npx @wpmoo/toolkit
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit
+```
+
+:::
 
 Compatibility aliases:
 

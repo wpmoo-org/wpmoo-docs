@@ -58,11 +58,33 @@ features:
 
 ## Quick Start
 
-```bash
-npx @wpmoo/toolkit
-cd <product>_dev
-./moo
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit
+$ cd <product>_dev
+$ ./moo
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit
+$ cd <product>_dev
+$ ./moo
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit
+$ cd <product>_dev
+$ ./moo
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit
+$ cd <product>_dev
+$ ./moo
+```
+
+:::
 
 No long Docker commands. No guessing addon paths. No mixing generated runtime files with product source code.
 

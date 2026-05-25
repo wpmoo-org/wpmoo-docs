@@ -135,10 +135,29 @@ odoo/custom/manifests/sources.yaml
 
 Use it with:
 
-```bash
-npx @wpmoo/toolkit source list
-npx @wpmoo/toolkit source sync
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit source list
+$ npx @wpmoo/toolkit source sync
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit source list
+$ pnpm dlx @wpmoo/toolkit source sync
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit source list
+$ yarn dlx @wpmoo/toolkit source sync
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit source list
+$ bunx @wpmoo/toolkit source sync
+```
+
+:::
 
 ## External Resources
 
@@ -152,8 +171,10 @@ gh:wpmoo-org/odoo-skills
 
 You can pin refs during creation:
 
-```bash
-npx @wpmoo/toolkit create \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit create \
   --product my_product \
   --source-repo-url https://github.com/example-org/my_product.git \
   --compose-template-ref v0.1.0 \
@@ -161,15 +182,63 @@ npx @wpmoo/toolkit create \
   --agent-skills-template-ref v0.1.0
 ```
 
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit create \
+  --product my_product \
+  --source-repo-url https://github.com/example-org/my_product.git \
+  --compose-template-ref v0.1.0 \
+  --agent-skills-template \
+  --agent-skills-template-ref v0.1.0
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit create \
+  --product my_product \
+  --source-repo-url https://github.com/example-org/my_product.git \
+  --compose-template-ref v0.1.0 \
+  --agent-skills-template \
+  --agent-skills-template-ref v0.1.0
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit create \
+  --product my_product \
+  --source-repo-url https://github.com/example-org/my_product.git \
+  --compose-template-ref v0.1.0 \
+  --agent-skills-template \
+  --agent-skills-template-ref v0.1.0
+```
+
+:::
+
 ## When To Regenerate
 
 Use safe reset when generated files drift, templates improve, or an older
 environment needs a refresh:
 
-```bash
-npx @wpmoo/toolkit reset --dry-run
-npx @wpmoo/toolkit reset
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit reset --dry-run
+$ npx @wpmoo/toolkit reset
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit reset --dry-run
+$ pnpm dlx @wpmoo/toolkit reset
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit reset --dry-run
+$ yarn dlx @wpmoo/toolkit reset
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit reset --dry-run
+$ bunx @wpmoo/toolkit reset
+```
+
+:::
 
 Safe reset is designed to preserve source repositories and runtime data. Use
 the dry run first.

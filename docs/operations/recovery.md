@@ -61,15 +61,47 @@ Restore intentionally:
 
 Preview a safe reset:
 
-```bash
-npx @wpmoo/toolkit reset --dry-run
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit reset --dry-run
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit reset --dry-run
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit reset --dry-run
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit reset --dry-run
+```
+
+:::
 
 Then refresh generated files:
 
-```bash
-npx @wpmoo/toolkit reset
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit reset
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit reset
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit reset
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit reset
+```
+
+:::
 
 Run checks after reset:
 

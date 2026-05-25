@@ -28,19 +28,63 @@ Use the buckets by intent:
 
 Add a private source repository:
 
-```bash
-npx @wpmoo/toolkit add-repo \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit add-repo \
   --repo-url https://github.com/example-org/odoo-addons.git \
   --source-type private
 ```
 
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo-addons.git \
+  --source-type private
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo-addons.git \
+  --source-type private
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo-addons.git \
+  --source-type private
+```
+
+:::
+
 Add an OCA repository:
 
-```bash
-npx @wpmoo/toolkit add-repo \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit add-repo \
   --repo-url https://github.com/OCA/server-tools.git \
   --source-type oca
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/OCA/server-tools.git \
+  --source-type oca
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/OCA/server-tools.git \
+  --source-type oca
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/OCA/server-tools.git \
+  --source-type oca
+```
+
+:::
 
 WPMoo adds source repositories as Git submodules and registers them in the
 generated environment metadata.
@@ -63,30 +107,97 @@ It records:
 
 Inspect it:
 
-```bash
-npx @wpmoo/toolkit source list
-npx @wpmoo/toolkit source list --json
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit source list
+$ npx @wpmoo/toolkit source list --json
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit source list
+$ pnpm dlx @wpmoo/toolkit source list --json
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit source list
+$ yarn dlx @wpmoo/toolkit source list --json
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit source list
+$ bunx @wpmoo/toolkit source list --json
+```
+
+:::
 
 Regenerate it after manual source repairs:
 
-```bash
-npx @wpmoo/toolkit source sync
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit source sync
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit source sync
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit source sync
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit source sync
+```
+
+:::
 
 Preview source sync changes:
 
-```bash
-npx @wpmoo/toolkit source sync --dry-run
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit source sync --dry-run
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit source sync --dry-run
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit source sync --dry-run
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit source sync --dry-run
+```
+
+:::
 
 ## Remove A Source Repository
 
 Remove a registered source repository:
 
-```bash
-npx @wpmoo/toolkit remove-repo --repo odoo-addons --source-type private
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit remove-repo --repo odoo-addons --source-type private
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit remove-repo --repo odoo-addons --source-type private
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit remove-repo --repo odoo-addons --source-type private
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit remove-repo --repo odoo-addons --source-type private
+```
+
+:::
 
 If the same repository folder name exists in more than one bucket, pass
 `--source-type` so WPMoo knows which one you mean.

@@ -24,9 +24,25 @@ or Git is not ready, WPMoo stops early and tells you what to fix.
 
 Run the setup wizard:
 
-```bash
-npx @wpmoo/toolkit
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit
+```
+
+:::
 
 Enter the generated environment:
 
@@ -67,39 +83,130 @@ connect repositories later.
 Use `create` when you want repeatable setup in a script or team onboarding
 guide:
 
-```bash
-npx @wpmoo/toolkit create \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit create \
   --product my_product \
   --odoo-version 19.0 \
   --target ./my_product_dev \
   --source-repo-url https://github.com/example-org/my_product.git
 ```
 
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit create \
+  --product my_product \
+  --odoo-version 19.0 \
+  --target ./my_product_dev \
+  --source-repo-url https://github.com/example-org/my_product.git
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit create \
+  --product my_product \
+  --odoo-version 19.0 \
+  --target ./my_product_dev \
+  --source-repo-url https://github.com/example-org/my_product.git
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit create \
+  --product my_product \
+  --odoo-version 19.0 \
+  --target ./my_product_dev \
+  --source-repo-url https://github.com/example-org/my_product.git
+```
+
+:::
+
 Preview the generated files without writing them:
 
-```bash
-npx @wpmoo/toolkit create \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit create \
   --product my_product \
   --source-repo-url https://github.com/example-org/my_product.git \
   --dry-run
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit create \
+  --product my_product \
+  --source-repo-url https://github.com/example-org/my_product.git \
+  --dry-run
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit create \
+  --product my_product \
+  --source-repo-url https://github.com/example-org/my_product.git \
+  --dry-run
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit create \
+  --product my_product \
+  --source-repo-url https://github.com/example-org/my_product.git \
+  --dry-run
+```
+
+:::
 
 ## Add Sources Later
 
 Generated environments can start empty. Add source repositories later from the
 cockpit or with a direct command:
 
-```bash
-npx @wpmoo/toolkit add-repo \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit add-repo \
   --repo-url https://github.com/example-org/odoo-addons.git \
   --source-type private
 ```
 
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo-addons.git \
+  --source-type private
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo-addons.git \
+  --source-type private
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo-addons.git \
+  --source-type private
+```
+
+:::
+
 Then refresh the manifest:
 
-```bash
-npx @wpmoo/toolkit source sync
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit source sync
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit source sync
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit source sync
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit source sync
+```
+
+:::
 
 Source repositories are grouped under:
 

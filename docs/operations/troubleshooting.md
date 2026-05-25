@@ -38,29 +38,101 @@ Symptoms:
 
 Check:
 
-```bash
-./moo status
-npx @wpmoo/toolkit source list
+::: code-group
+
+```sh [npm]
+$ ./moo status
+$ npx @wpmoo/toolkit source list
 ```
+
+```sh [pnpm]
+$ ./moo status
+$ pnpm dlx @wpmoo/toolkit source list
+```
+
+```sh [yarn]
+$ ./moo status
+$ yarn dlx @wpmoo/toolkit source list
+```
+
+```sh [bun]
+$ ./moo status
+$ bunx @wpmoo/toolkit source list
+```
+
+:::
 
 Fix:
 
-```bash
-npx @wpmoo/toolkit add-repo \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit add-repo \
   --repo-url https://github.com/example-org/odoo-addons.git \
   --source-type private
 
-npx @wpmoo/toolkit source sync
+$ npx @wpmoo/toolkit source sync
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo-addons.git \
+  --source-type private
+
+$ pnpm dlx @wpmoo/toolkit source sync
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo-addons.git \
+  --source-type private
+
+$ yarn dlx @wpmoo/toolkit source sync
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo-addons.git \
+  --source-type private
+
+$ bunx @wpmoo/toolkit source sync
+```
+
+:::
 
 Or create a starter module in an existing source repository:
 
-```bash
-npx @wpmoo/toolkit add-module \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit add-module \
   --repo odoo-addons \
   --module my_module \
   --source-type private
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit add-module \
+  --repo odoo-addons \
+  --module my_module \
+  --source-type private
+```
+
+:::
 
 ## No Source Repositories
 
@@ -71,13 +143,41 @@ Symptoms:
 
 Fix:
 
-```bash
-npx @wpmoo/toolkit add-repo \
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit add-repo \
   --repo-url https://github.com/example-org/odoo-addons.git \
   --source-type private
 
-npx @wpmoo/toolkit source sync
+$ npx @wpmoo/toolkit source sync
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo-addons.git \
+  --source-type private
+
+$ pnpm dlx @wpmoo/toolkit source sync
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo-addons.git \
+  --source-type private
+
+$ yarn dlx @wpmoo/toolkit source sync
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit add-repo \
+  --repo-url https://github.com/example-org/odoo-addons.git \
+  --source-type private
+
+$ bunx @wpmoo/toolkit source sync
+```
+
+:::
 
 Use `--source-type oca` or `--source-type external` when appropriate.
 
@@ -111,16 +211,51 @@ Symptoms:
 
 Preview:
 
-```bash
-npx @wpmoo/toolkit source sync --dry-run
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit source sync --dry-run
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit source sync --dry-run
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit source sync --dry-run
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit source sync --dry-run
+```
+
+:::
 
 Fix:
 
-```bash
-npx @wpmoo/toolkit source sync
-./moo doctor
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit source sync
+$ ./moo doctor
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit source sync
+$ ./moo doctor
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit source sync
+$ ./moo doctor
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit source sync
+$ ./moo doctor
+```
+
+:::
 
 ## PostgreSQL Diagnostics Are Unavailable
 
@@ -181,9 +316,25 @@ rollback path.
 
 Use the supported scoped package in automation:
 
-```bash
-npx @wpmoo/toolkit --version
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit --version
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit --version
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit --version
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit --version
+```
+
+:::
 
 The compatibility packages `@wpmoo/odoo` and `@wpmoo/odoo-dev` redirect to the
 Toolkit package. The unscoped `wpmoo` alias is best-effort and should not be the

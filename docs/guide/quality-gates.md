@@ -158,15 +158,49 @@ record.write({"state": "done"})
 
 Use JSON output for scripts, CI jobs, editors, and agents:
 
-```bash
-npx @wpmoo/toolkit status --json
-npx @wpmoo/toolkit source list --json
-npx @wpmoo/toolkit source sync --json
-npx @wpmoo/toolkit doctor --json
-npx @wpmoo/toolkit doctor --json --fail-on-warning
-npx @wpmoo/toolkit doctor --json --postgres
-./moo gate --modules my_module --json
+::: code-group
+
+```sh [npm]
+$ npx @wpmoo/toolkit status --json
+$ npx @wpmoo/toolkit source list --json
+$ npx @wpmoo/toolkit source sync --json
+$ npx @wpmoo/toolkit doctor --json
+$ npx @wpmoo/toolkit doctor --json --fail-on-warning
+$ npx @wpmoo/toolkit doctor --json --postgres
+$ ./moo gate --modules my_module --json
 ```
+
+```sh [pnpm]
+$ pnpm dlx @wpmoo/toolkit status --json
+$ pnpm dlx @wpmoo/toolkit source list --json
+$ pnpm dlx @wpmoo/toolkit source sync --json
+$ pnpm dlx @wpmoo/toolkit doctor --json
+$ pnpm dlx @wpmoo/toolkit doctor --json --fail-on-warning
+$ pnpm dlx @wpmoo/toolkit doctor --json --postgres
+$ ./moo gate --modules my_module --json
+```
+
+```sh [yarn]
+$ yarn dlx @wpmoo/toolkit status --json
+$ yarn dlx @wpmoo/toolkit source list --json
+$ yarn dlx @wpmoo/toolkit source sync --json
+$ yarn dlx @wpmoo/toolkit doctor --json
+$ yarn dlx @wpmoo/toolkit doctor --json --fail-on-warning
+$ yarn dlx @wpmoo/toolkit doctor --json --postgres
+$ ./moo gate --modules my_module --json
+```
+
+```sh [bun]
+$ bunx @wpmoo/toolkit status --json
+$ bunx @wpmoo/toolkit source list --json
+$ bunx @wpmoo/toolkit source sync --json
+$ bunx @wpmoo/toolkit doctor --json
+$ bunx @wpmoo/toolkit doctor --json --fail-on-warning
+$ bunx @wpmoo/toolkit doctor --json --postgres
+$ ./moo gate --modules my_module --json
+```
+
+:::
 
 Automation should check both the process exit code and the `ok` field when one
 is present. Unknown JSON fields should be ignored so patch releases can add
